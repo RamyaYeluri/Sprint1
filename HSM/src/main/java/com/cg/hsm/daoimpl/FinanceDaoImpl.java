@@ -1,7 +1,7 @@
 package com.cg.hsm.daoimpl;
 
-import com.cg.hsm.dao.FinanceDao;
+import com.cg.hsm.dao.FinanceDAO;
 
-public class FinanceDaoImpl implements FinanceDao {
+public class FinanceDAOImpl implements FinanceDAO {
 
 }

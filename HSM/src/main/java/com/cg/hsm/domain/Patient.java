@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 /**
  * This class will create patient table in database and get all doctor details
@@ -21,8 +22,15 @@ public class Patient {
 	 */
 	private int patientId;
 	@Embedded
-	private PatientsHistory patientsHistory;
+	@OneToMany
+	private PatientHistory patientHistory;
+	@Embedded
+	PatientCase patientCase;
+	
 
+			//getters and setters
+			
+			
 	/**
 	 * id of the patient
 	 */
@@ -47,17 +55,6 @@ public class Patient {
 	 * fee for the patient admission fee
 	 */
 	private int admissionFee;
-	/**
-	 * policy id for the patient
-	 */
-	private int policyId;
-	/**
-	 * policy name for the patient 
-	 */
-	private String policyName;
-	
-	//getters and setters
-	
 	
 	
 	public int getPatientId() {
@@ -103,31 +100,28 @@ public class Patient {
 		this.admissionFee = admissionFee;
 	}
 	
-	public int getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(int policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyName() {
-		return policyName;
-	}
-	public void setPolicyName(String policyName) {
-		this.policyName = policyName;
+
+	public PatientHistory getPatientHistory() {
+		return patientHistory;
 	}
 
-	public PatientsHistory getPatientsHistory() {
-		return patientsHistory;
-	}
-
-	public void PatientsHistory(PatientsHistory patientsHistory) {
-		this.patientsHistory = patientsHistory;
+	public void setPatientHistory(PatientHistory patientHistory) {
+		this.patientHistory = patientHistory;
 	}
 	
+
+	public PatientCase getPatientCase() {
+		return patientCase;
+	}
+	public void setPatientCase(PatientCase patientCase) {
+		this.patientCase = patientCase;
+	}
+
 	
 	//Parameterized Constructor
-	public Patient(int patientId, String patientName, int patientAge, long patientContact, String address,
-			String symptoms, int admissionFee, int policyId, String policyName) {
+	public Patient(int patientId, com.cg.hsm.domain.PatientHistory patientHistory, PatientCase patientCase,
+			String patientName, int patientAge, long patientContact, String address, String symptoms, int admissionFee
+			) {
 		super();
 		this.patientId = patientId;
 		this.patientName = patientName;
@@ -136,8 +130,9 @@ public class Patient {
 		this.address = address;
 		this.symptoms = symptoms;
 		this.admissionFee = admissionFee;
-		this.policyId = policyId;
-		this.policyName = policyName;
+		this.patientHistory = patientHistory;
+		this.patientCase = patientCase;
+		
 	}
 	
 	//Default Constructor
@@ -145,11 +140,12 @@ public class Patient {
 			super();
 			
 		}
+		
 		@Override
 		public String toString() {
 			return "Patient [patientId=" + patientId + ", patientName=" + patientName + ", patientAge=" + patientAge
 					+ ", patientContact=" + patientContact + ", address=" + address + ", symptoms=" + symptoms
-					+ ", admissionFee=" + admissionFee + ", policyId=" + policyId + ", policyName=" + policyName + "]";
+					+ ", admissionFee=" + admissionFee + "]";
 		}
 			
 		

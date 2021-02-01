@@ -1,5 +1,5 @@
 package com.cg.hsm.dao;
 
-public interface InsurancePolicyDao {
+public interface InsurancePolicyDAO {
 
 }

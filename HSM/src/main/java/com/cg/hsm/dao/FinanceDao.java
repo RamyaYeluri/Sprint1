@@ -1,5 +1,5 @@
 package com.cg.hsm.dao;
 
-public interface FinanceDao {
+public interface FinanceDAO {
 
 }

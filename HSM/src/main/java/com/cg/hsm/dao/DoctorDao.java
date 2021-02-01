@@ -9,7 +9,7 @@ import com.cg.hsm.domain.Doctor;
  *
  */
 
-public interface DoctorDao {
+public interface DoctorDAO {
 	
 	/**
 	 * This addDoctor method will add new doctor to database
@@ -20,22 +20,22 @@ public interface DoctorDao {
 	 * This updateDoctor method will update doctor fees in database;
 	 * @param fees
 	 */
-	public void updateDoctor(int fees);
+	public void updateDoctorFee(int doctorId,int updatedDoctorFee);
 	/**
 	 * This updateDoctor will update doctor details in database
 	 * @param doctor
 	 */
-	public void updateDoctor(Doctor doctor);
+	public void updateDoctor(Doctor doctor, int doctorId);
 	/**
 	 * This deleteDoctor method will delete record of doctor from database
 	 * @param doctor
 	 */
-	public void deleteDoctor(Doctor doctor);
+	public void deleteDoctor(int doctorId);
 	/**
 	 * This will return the list of all the doctors from database
 	 * @return Doctors
 	 */
-	List<Doctor> findAll();
+	List<Doctor> listAllDoctors();
 	
 
 }

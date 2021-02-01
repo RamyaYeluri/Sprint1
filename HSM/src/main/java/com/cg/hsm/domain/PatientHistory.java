@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
  */
 
 @Embeddable
-public class PatientsHistory {
+public class PatientHistory {
 		/**
 		 * Name of old Disease.
 		 */
@@ -27,7 +27,7 @@ public class PatientsHistory {
 		/**
 		 * Name of the reports  patient have.
 		 */
-		private String reports;
+		private String histoyReports;
 		
 		//Getters and Setters
 			
@@ -63,39 +63,38 @@ public class PatientsHistory {
 			this.treatmentStatus = treatmentStatus;
 		}
 
-		public String getReports() {
-			return reports;
+		public String getHistoryReports() {
+			return histoyReports;
 		}
 
-		public void setReports(String reports) {
-			this.reports = reports;
+		public void setHistoryReports(String reports) {
+			this.histoyReports = reports;
 		}
 
 		//Default Constructor
-		public PatientsHistory() {
+		public PatientHistory() {
 			super();
 			
 		}
 		
 		
-		public PatientsHistory(String diseaseName, String bloodGroup, String dietAdvised, String treatmentStatus,
-				String reports) {
+		public PatientHistory(String diseaseName, String bloodGroup, String dietAdvised, String treatmentStatus,
+				String historyReports) {
 			super();
 			this.diseaseName = diseaseName;
 			this.bloodGroup = bloodGroup;
 			this.dietAdvised = dietAdvised;
 			this.treatmentStatus = treatmentStatus;
-			this.reports = reports;
+			this.histoyReports = historyReports;
 		}
 
 		//Overridden toString method
 		@Override
 		public String toString() {
 			return "PatientsHistory [diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised="
-					+ dietAdvised + ", treatmentStatus=" + treatmentStatus + ", reports=" + reports + "]";
+					+ dietAdvised + ", treatmentStatus=" + treatmentStatus + ", reports=" + histoyReports + "]";
 		}
 	}
 		
-
 
 

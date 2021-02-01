@@ -1,7 +1,7 @@
 package com.cg.hsm.daoimpl;
 
-import com.cg.hsm.dao.InsurancePolicyDao;
+import com.cg.hsm.dao.InsurancePolicyDAO;
 
-public class InsurancePolicyDaoImpl implements InsurancePolicyDao {
+public class InsurancePolicyDAOImpl implements InsurancePolicyDAO {
 
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author Pranjali Chaudhari
  *
  */
-public class DbUtil {
+public class DBUtil {
 	EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("JPA-PU");  
     protected EntityManager entityManager=entityManagerFactory.createEntityManager();
 
