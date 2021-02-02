@@ -19,6 +19,7 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 		// TODO Auto-generated method stub
 		entityManager.getTransaction().begin();
 		entityManager.persist(patient);
+		entityManager.persist(patient.getPatientHistory());
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		  
@@ -94,4 +95,5 @@ public void updatePatientCase( PatientCase patientcase, int patientId) {
 		 entityManager.close();
 	
 }
+
 }

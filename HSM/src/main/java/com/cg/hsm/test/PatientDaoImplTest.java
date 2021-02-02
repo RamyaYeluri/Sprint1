@@ -3,6 +3,7 @@ package com.cg.hsm.test;
 import java.util.Scanner;
 
 import com.cg.hsm.daoimpl.PatientDAOImpl;
+import com.cg.hsm.daoimpl.PatientHistoryDAOImpl;
 import com.cg.hsm.domain.Patient;
 import com.cg.hsm.domain.PatientCase;
 import com.cg.hsm.domain.PatientHistory;
@@ -52,6 +53,9 @@ public class PatientDAOImplTest {
 		patientcase.setCurrentTreatment(sc.next());
 		patient.setPatientCase(patientcase);
 		PatientDAOImpl impl = new PatientDAOImpl();
+		PatientHistory history = new PatientHistory();
+		history.setBloodGroup("A+");
+		patient.getPatientHistory().add(history);
 		impl.addPatient(patient);
 		System.out.println("Patient Registered Successfully!");
 		sc.close();
@@ -82,6 +86,10 @@ public class PatientDAOImplTest {
 		PatientDAOImpl impl = new PatientDAOImpl();
 		impl.updatePatient(patient1, patientId);
 		System.out.println("Patient updated Successfully!");
+		
+			
+		
+			
 		sc.close();
 
 	}
@@ -99,6 +107,37 @@ public class PatientDAOImplTest {
 		sc.close();
 
 	}
+	public static void registerPatientHistory() {
+		Patient patient=new Patient();
+		Scanner sc = new Scanner(System.in);
+		PatientHistory patienthistory = new PatientHistory();
+		;
+		System.out.println("------Patient's History-------");
+		System.out.println("enter the id of the patient");
+		//patient.setPatientId(sc.nextInt());
+		patienthistory.setPatientId(sc.nextInt());
+		System.out.println("enter the id of the patienthistory");
+		patienthistory.setPatientHistoryId(sc.nextInt());
+		System.out.println("Enter Patient's Blood Group :  ");
+		patienthistory.setBloodGroup(sc.next());
+		System.out.println("Enter Patient's Previous Disease Description : ");
+		patienthistory.setDiseaseName(sc.next());
+		System.out.println("Enter Treatment Status : ");
+		patienthistory.setTreatmentStatus(sc.next());
+		System.out.println("Enter Diet Advised : ");
+		patienthistory.setDietAdvised(sc.next());
+		System.out.println("Enter Report Details : ");
+		patienthistory.setHistoryReports(sc.next());
+		patient.getPatientHistory().add(patienthistory);
+		
+		PatientHistoryDAOImpl impl=new PatientHistoryDAOImpl();
+		impl.addPatientHistory(patienthistory);
+		System.out.println("Patient History added Successfully!");
+		sc.close();
+		
+	}
+		
+	
 
 	
 
@@ -109,7 +148,8 @@ public class PatientDAOImplTest {
 		System.out.println("2. get all patient details ");
 		System.out.println("3. UpdatePatient");
 		System.out.println("4. Patient History");
-		System.out.println("5. Remove Patient");
+		System.out.println("5.get all patient history details");
+		System.out.println("6. Remove Patient");
 		System.out.println("Enter the choice");
 		int choice = sc.nextInt();
 
@@ -128,9 +168,17 @@ public class PatientDAOImplTest {
 			break;
 
 		case 4:
-			//updatePatientHistory();
+			registerPatientHistory();
 			break;
 		case 5:
+
+			PatientHistoryDAOImpl impls = new PatientHistoryDAOImpl();
+			impls.listAllPatientHistories();
+			
+			
+			break;
+		
+		case 6:
 			removePatient();
 			break;
 		default:

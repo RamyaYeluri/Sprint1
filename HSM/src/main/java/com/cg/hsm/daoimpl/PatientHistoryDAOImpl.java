@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.cg.hsm.dao.PatientHistoryDAO;
-
+import com.cg.hsm.domain.Patient;
 import com.cg.hsm.domain.PatientHistory;
 import com.cg.hsm.util.DBUtil;
 
@@ -14,16 +14,21 @@ public class PatientHistoryDAOImpl extends DBUtil implements PatientHistoryDAO {
 	@Override
 	public void addPatientHistory(PatientHistory patientHistory) {
 		entityManager.getTransaction().begin();
-		entityManager.persist(patientHistory);
+		Patient patient = entityManager.find(Patient.class, patientHistory.getPatientId());
+		patient.getPatientHistory().add(patientHistory);
+		entityManager.merge(patient);
 		entityManager.getTransaction().commit();
 		
 		
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	@Override
+	
+	
 	public List<PatientHistory> listAllPatientHistories() {
-		Query query =entityManager.createQuery("from PatientsHistory");	
+		
+		Query query =entityManager.createQuery("from PatientHistory");	
 		List<PatientHistory> patientsHistory =  query.getResultList();
 		for(PatientHistory patienthistory:patientsHistory)
 		{

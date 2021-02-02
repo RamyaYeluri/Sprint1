@@ -1,16 +1,19 @@
 package com.cg.hsm.domain;
 
 import java.util.HashSet;
-
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 /**
  * This class will create patient table in database and get all doctor details
  * @author Jyothi
@@ -27,8 +30,10 @@ public class Patient {
 	private int patientId;
 	
 	 
-    @OneToMany
-    Set<PatientHistory> patientHistory = new HashSet<PatientHistory>();
+   // @OneToMany(mappedBy="patient")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="patientId")
+    Set<PatientHistory> patientHistory;
  
 	
 		@Embedded
@@ -124,6 +129,9 @@ public class Patient {
 	
 	
 	public void setPatientHistory(Set<PatientHistory> patientHistory) {
+		if(null == patientHistory) {
+			patientHistory = new HashSet<PatientHistory>();
+		}
 		this.patientHistory = patientHistory;
 	}
 		//Default Constructor
@@ -149,6 +157,9 @@ public class Patient {
 		}
 		public Set<PatientHistory> getPatientHistory() {
 			// TODO Auto-generated method stub
+			if(null == patientHistory) {
+				patientHistory = new HashSet<PatientHistory>();
+			}
 			return patientHistory;
 		}
 		

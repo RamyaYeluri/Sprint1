@@ -15,13 +15,12 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="patient's history")
+@Table(name="patientshistory")
 
 public class PatientHistory {
 		
 	@ManyToOne
-	@JoinColumn(name="FK_PatientId")
-	private Patient patientId;
+	private Patient patient;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +38,14 @@ public class PatientHistory {
 		/**
 		 * blood group.
 		 */
+		private int patientId;
+		public int getPatientId() {
+			return patientId;
+		}
+		public void setPatientId(int patientId) {
+			this.patientId = patientId;
+		}
+
 		private String bloodGroup;
 		/**
 		 * Diet advised for patient
@@ -54,7 +61,9 @@ public class PatientHistory {
 		private String histoyReports;
 		
 		//Getters and Setters
-			
+		public void setPatient(Patient patient)	{
+			this.patient=patient;
+		}
 		public String getDiseaseName() {
 			return diseaseName;
 		}
@@ -75,8 +84,8 @@ public class PatientHistory {
 			return bloodGroup;
 		}
 
-		public Patient getPatientId() {
-			return patientId;
+		public Patient getPatient() {
+			return patient;
 		}
 
 		
@@ -116,15 +125,14 @@ public class PatientHistory {
 
 		@Override
 		public String toString() {
-			return "PatientHistory [patientId=" + patientId + ", patientHistoryId=" + patientHistoryId
+			return "PatientHistory [patient=" + patient + ", patientHistoryId=" + patientHistoryId
 					+ ", diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised=" + dietAdvised
 					+ ", treatmentStatus=" + treatmentStatus + ", histoyReports=" + histoyReports + "]";
 		}
 
-		public PatientHistory(Patient patientId, int patientHistoryId, String diseaseName, String bloodGroup,
+		public PatientHistory( int patientHistoryId, String diseaseName, String bloodGroup,
 				String dietAdvised, String treatmentStatus, String histoyReports) {
 			super();
-			this.patientId = patientId;
 			this.patientHistoryId = patientHistoryId;
 			this.diseaseName = diseaseName;
 			this.bloodGroup = bloodGroup;
