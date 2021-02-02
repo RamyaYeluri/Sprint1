@@ -100,32 +100,7 @@ public class PatientDAOImplTest {
 
 	}
 
-	public static void updatePatientHistory() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("----------patient's history------------");
-		System.out.println("enter the id of the patient");
-		int patientId = sc.nextInt();
-  
-		  sc.nextLine();
-		PatientHistory patientHistory = new PatientHistory();
-		System.out.println("Enter Patient disease");
-		patientHistory.setDiseaseName(sc.next());
-		sc.nextLine();
-		System.out.println("Enter the BloodGroup");
-		patientHistory.setBloodGroup(sc.next());
-		sc.nextLine();
-		System.out.println("Enter Diet advised to the patient");
-		patientHistory.setDietAdvised(sc.next());
-		sc.nextLine();
-		System.out.println("enter the treatment status of the patient");
-		patientHistory.setTreatmentStatus(sc.next());
-		sc.nextLine();
-
-		System.out.println("Enter the reports name");
-		patientHistory.setHistoryReports(sc.next());
-		//sc.nextLine();
-		sc.close();
-	}
+	
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -153,7 +128,7 @@ public class PatientDAOImplTest {
 			break;
 
 		case 4:
-			updatePatientHistory();
+			//updatePatientHistory();
 			break;
 		case 5:
 			removePatient();

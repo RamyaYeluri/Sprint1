@@ -11,7 +11,10 @@ public class PatientHistoryDAOImplTest {
 		Patient patient=new Patient();
 		Scanner sc = new Scanner(System.in);
 		PatientHistory patienthistory = new PatientHistory();
+		
 		System.out.println("------Patient's History-------");
+		System.out.println("enter the id of the patienthistory");
+		patienthistory.setPatientHistoryId(sc.nextInt());
 		System.out.println("Enter Patient's Blood Group :  ");
 		patienthistory.setBloodGroup(sc.next());
 		System.out.println("Enter Patient's Previous Disease Description : ");

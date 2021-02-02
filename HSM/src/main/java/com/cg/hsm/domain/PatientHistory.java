@@ -1,6 +1,10 @@
 package com.cg.hsm.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,17 +17,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name="patient's history")
 
-	
-
 public class PatientHistory {
-		/**
-		 * Name of old Disease.
-		 */
+		
 	@ManyToOne
 	@JoinColumn(name="FK_PatientId")
 	private Patient patientId;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	/**
+	 * id of the patientHistoryId
+	 */
+	@Column(name="patientHistoryId")
+	private int patientHistoryId;
 	
+	/**
+	 * Name of old Disease.
+	 */
 	
 		private String diseaseName;
 		/**
@@ -49,6 +59,14 @@ public class PatientHistory {
 			return diseaseName;
 		}
 
+		public int getPatientHistoryId() {
+			return patientHistoryId;
+		}
+
+		public void setPatientHistoryId(int patientHistoryId) {
+			this.patientHistoryId = patientHistoryId;
+		}
+
 		public void setDiseaseName(String diseaseName) {
 			this.diseaseName = diseaseName;
 		}
@@ -57,6 +75,11 @@ public class PatientHistory {
 			return bloodGroup;
 		}
 
+		public Patient getPatientId() {
+			return patientId;
+		}
+
+		
 		public void setBloodGroup(String bloodGroup) {
 			this.bloodGroup = bloodGroup;
 		}
@@ -90,25 +113,28 @@ public class PatientHistory {
 			super();
 			
 		}
-		
-		
-		public PatientHistory(String diseaseName, String bloodGroup, String dietAdvised, String treatmentStatus,
-				String historyReports,Patient patientId) {
+
+		@Override
+		public String toString() {
+			return "PatientHistory [patientId=" + patientId + ", patientHistoryId=" + patientHistoryId
+					+ ", diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised=" + dietAdvised
+					+ ", treatmentStatus=" + treatmentStatus + ", histoyReports=" + histoyReports + "]";
+		}
+
+		public PatientHistory(Patient patientId, int patientHistoryId, String diseaseName, String bloodGroup,
+				String dietAdvised, String treatmentStatus, String histoyReports) {
 			super();
+			this.patientId = patientId;
+			this.patientHistoryId = patientHistoryId;
 			this.diseaseName = diseaseName;
 			this.bloodGroup = bloodGroup;
 			this.dietAdvised = dietAdvised;
 			this.treatmentStatus = treatmentStatus;
-			this.histoyReports = historyReports;
-			this.patientId=patientId;
+			this.histoyReports = histoyReports;
 		}
-
-		//Overridden toString method
-		@Override
-		public String toString() {
-			return "PatientsHistory [diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised="
-					+ dietAdvised + ", treatmentStatus=" + treatmentStatus + ", reports=" + histoyReports + ", patientId = " +patientId+ "]";
-		}
+		
+		
+		
 	}
 		
 

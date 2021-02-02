@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author Jyothi
  *
  */
-@Entity
+@Entity(name="ForeignKeyAssoEntity")
 @Table(name="patients")
 public class Patient {
 	@Id
@@ -27,7 +27,7 @@ public class Patient {
 	private int patientId;
 	
 	 
-    @OneToMany(mappedBy="patienthistoryid")
+    @OneToMany
     Set<PatientHistory> patientHistory = new HashSet<PatientHistory>();
  
 	
