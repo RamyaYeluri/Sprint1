@@ -1,16 +1,30 @@
 package com.cg.hsm.domain;
-import javax.persistence.Embeddable;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 /**
  * This class will create patientHistory table in database and get all patient history  details
  * @author Y.K Sai Ramya
  *
  */
 
-@Embeddable
+@Entity
+@Table(name="patient's history")
+
+	
+
 public class PatientHistory {
 		/**
 		 * Name of old Disease.
 		 */
+	@ManyToOne
+	@JoinColumn(name="FK_PatientId")
+	private Patient patientId;
+	
+	
+	
 		private String diseaseName;
 		/**
 		 * blood group.
@@ -79,20 +93,21 @@ public class PatientHistory {
 		
 		
 		public PatientHistory(String diseaseName, String bloodGroup, String dietAdvised, String treatmentStatus,
-				String historyReports) {
+				String historyReports,Patient patientId) {
 			super();
 			this.diseaseName = diseaseName;
 			this.bloodGroup = bloodGroup;
 			this.dietAdvised = dietAdvised;
 			this.treatmentStatus = treatmentStatus;
 			this.histoyReports = historyReports;
+			this.patientId=patientId;
 		}
 
 		//Overridden toString method
 		@Override
 		public String toString() {
 			return "PatientsHistory [diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised="
-					+ dietAdvised + ", treatmentStatus=" + treatmentStatus + ", reports=" + histoyReports + "]";
+					+ dietAdvised + ", treatmentStatus=" + treatmentStatus + ", reports=" + histoyReports + ", patientId = " +patientId+ "]";
 		}
 	}
 		

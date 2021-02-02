@@ -51,27 +51,12 @@ public class PatientDAOImplTest {
 		System.out.println("Enter Patient's Current Treatment Description : ");
 		patientcase.setCurrentTreatment(sc.next());
 		patient.setPatientCase(patientcase);
-
-		PatientHistory patienthistory = new PatientHistory();
-		System.out.println("------Patient's History-------");
-		System.out.println("Enter Patient's Blood Group :  ");
-		patienthistory.setBloodGroup(sc.next());
-		System.out.println("Enter Patient's Previous Disease Description : ");
-		patienthistory.setDiseaseName(sc.next());
-		System.out.println("Enter Treatment Status : ");
-		patienthistory.setTreatmentStatus(sc.next());
-		System.out.println("Enter Diet Advised : ");
-		patienthistory.setDietAdvised(sc.next());
-		System.out.println("Enter Report Details : ");
-		patienthistory.setHistoryReports(sc.next());
-
-		patient.setPatientHistory(patienthistory);
-
 		PatientDAOImpl impl = new PatientDAOImpl();
 		impl.addPatient(patient);
 		System.out.println("Patient Registered Successfully!");
 		sc.close();
 
+			
 	}
 
 	public static void updatePatientPersonalInfo() {
@@ -120,7 +105,8 @@ public class PatientDAOImplTest {
 		System.out.println("----------patient's history------------");
 		System.out.println("enter the id of the patient");
 		int patientId = sc.nextInt();
-		sc.nextLine();
+  
+		  sc.nextLine();
 		PatientHistory patientHistory = new PatientHistory();
 		System.out.println("Enter Patient disease");
 		patientHistory.setDiseaseName(sc.next());
@@ -137,9 +123,7 @@ public class PatientDAOImplTest {
 
 		System.out.println("Enter the reports name");
 		patientHistory.setHistoryReports(sc.next());
-		sc.nextLine();
-		PatientDAOImpl impl = new PatientDAOImpl();
-		impl.updatePatientHistory(patientHistory, patientId);
+		//sc.nextLine();
 		sc.close();
 	}
 

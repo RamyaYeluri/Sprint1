@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import com.cg.hsm.dao.PatientDAO;
 import com.cg.hsm.domain.Patient;
 import com.cg.hsm.domain.PatientCase;
-import com.cg.hsm.domain.PatientHistory;
+
 import com.cg.hsm.util.DBUtil;
 
 public class PatientDAOImpl extends DBUtil implements PatientDAO {
@@ -38,7 +38,7 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 		patient.setAddress(patient1.getAddress());
 		patient.setAdmissionFee(patient1.getAdmissionFee());
 		patient.setPatientCase(patient1.getPatientCase());
-		patient.setPatientHistory(patient1.getPatientHistory());
+		
 		 entityManager.getTransaction().commit();
 		 entityManager.close();
 		  
@@ -74,24 +74,11 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 			System.out.println("Symptoms : "+patient.getSymptoms());
 			System.out.println("Admission Fee : "+ patient.getAdmissionFee());
 			System.out.println("Patient Case : " + patient.getPatientCase());
-			System.out.println("Patient History : "+patient.getPatientHistory());
+			
 		}
 		return null;
 	}
-	public void updatePatientHistory( PatientHistory patientHistory, int patientId) {
 		
-		entityManager.getTransaction().begin();	
-		Patient patient=entityManager.find(Patient.class, patientId);
-		patientHistory.setDiseaseName(patientHistory.getDiseaseName());
-		patientHistory.setBloodGroup(patientHistory.getBloodGroup());
-		patientHistory.setTreatmentStatus(patientHistory.getTreatmentStatus());
-		patientHistory.setDietAdvised(patientHistory.getDietAdvised());
-		patientHistory.setHistoryReports(patientHistory.getHistoryReports());
-		patient.setPatientHistory(patientHistory);
-		 entityManager.getTransaction().commit();
-		 entityManager.close();
-		
-	}
 public void updatePatientCase( PatientCase patientcase, int patientId) {
 		
 		entityManager.getTransaction().begin();	

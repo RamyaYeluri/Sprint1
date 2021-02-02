@@ -1,5 +1,9 @@
 package com.cg.hsm.domain;
 
+import java.util.HashSet;
+
+import java.util.Set;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +25,13 @@ public class Patient {
 	 * id of the patient
 	 */
 	private int patientId;
-	@Embedded
-	@OneToMany
-	private PatientHistory patientHistory;
-	@Embedded
+	
+	 
+    @OneToMany(mappedBy="patienthistoryid")
+    Set<PatientHistory> patientHistory = new HashSet<PatientHistory>();
+ 
+	
+		@Embedded
 	PatientCase patientCase;
 	
 
@@ -101,13 +108,7 @@ public class Patient {
 	}
 	
 
-	public PatientHistory getPatientHistory() {
-		return patientHistory;
-	}
-
-	public void setPatientHistory(PatientHistory patientHistory) {
-		this.patientHistory = patientHistory;
-	}
+	
 	
 
 	public PatientCase getPatientCase() {
@@ -118,35 +119,39 @@ public class Patient {
 	}
 
 	
-	//Parameterized Constructor
-	public Patient(int patientId, com.cg.hsm.domain.PatientHistory patientHistory, PatientCase patientCase,
-			String patientName, int patientAge, long patientContact, String address, String symptoms, int admissionFee
-			) {
-		super();
-		this.patientId = patientId;
-		this.patientName = patientName;
-		this.patientAge = patientAge;
-		this.patientContact = patientContact;
-		this.address = address;
-		this.symptoms = symptoms;
-		this.admissionFee = admissionFee;
-		this.patientHistory = patientHistory;
-		this.patientCase = patientCase;
-		
-	}
 	
-	//Default Constructor
+	
+	
+	
+	public void setPatientHistory(Set<PatientHistory> patientHistory) {
+		this.patientHistory = patientHistory;
+	}
+		//Default Constructor
 		public Patient() {
 			super();
 			
 		}
 		
-		@Override
-		public String toString() {
-			return "Patient [patientId=" + patientId + ", patientName=" + patientName + ", patientAge=" + patientAge
-					+ ", patientContact=" + patientContact + ", address=" + address + ", symptoms=" + symptoms
-					+ ", admissionFee=" + admissionFee + "]";
+		
+		//Parameterized Constructor
+		public Patient(int patientId, Set<PatientHistory> patientHistory, PatientCase patientCase, String patientName,
+				int patientAge, long patientContact, String address, String symptoms, int admissionFee) {
+			super();
+			this.patientId = patientId;
+			this.patientHistory = patientHistory;
+			this.patientCase = patientCase;
+			this.patientName = patientName;
+			this.patientAge = patientAge;
+			this.patientContact = patientContact;
+			this.address = address;
+			this.symptoms = symptoms;
+			this.admissionFee = admissionFee;
 		}
+		public Set<PatientHistory> getPatientHistory() {
+			// TODO Auto-generated method stub
+			return patientHistory;
+		}
+		
 			
 		
 	
