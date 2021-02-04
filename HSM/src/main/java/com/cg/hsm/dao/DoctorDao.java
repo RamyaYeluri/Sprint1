@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cg.hsm.domain.Doctor;
 /**
- * This class perform CRUD operations on database
+ * This DoctorDAO class perform CRUD operations on doctor class
  * @author Pranjali Chaudhari
  *
  */

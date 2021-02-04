@@ -9,7 +9,7 @@ import com.cg.hsm.domain.Doctor;
 import com.cg.hsm.util.DBUtil;
 
 /**
- * This class implements classes of DoctorDao Class
+ * This DoctorDAOImpl class implements classes of DoctorDAO Class
  * @author Pranjali Chaudhari
  *
  */
@@ -97,7 +97,7 @@ public class DoctorDAOImpl extends DBUtil implements DoctorDAO {
 			System.out.println("Fees : " + doctor.getDoctorFee());
 			System.out.println("-----------------------------");
 		}
-		return null;
+		return doctors;
 	}
 
 }

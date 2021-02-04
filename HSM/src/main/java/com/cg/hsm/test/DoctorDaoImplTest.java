@@ -1,9 +1,13 @@
 package com.cg.hsm.test;
 
 import java.util.Scanner;
-
 import com.cg.hsm.daoimpl.DoctorDAOImpl;
 import com.cg.hsm.domain.Doctor;
+import com.cg.hsm.exception.FeeNotFoundException;
+import com.cg.hsm.exception.InsufficientContactException;
+import com.cg.hsm.exception.InsufficientExperienceException;
+import com.cg.hsm.exception.InsufficientHoursOfAvailabilityException;
+import com.cg.hsm.exception.NameNotFoundException;
 
 /**
  * This class tests the functionalities of DoctorDaoImpl Class It checks whether
@@ -15,36 +19,85 @@ import com.cg.hsm.domain.Doctor;
  */
 
 public class DoctorDAOImplTest {
-	private static void registerDocor() {
-		Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
+
+	private static void registerDocor()
+			throws InsufficientHoursOfAvailabilityException, InsufficientExperienceException {
+
 		System.out.println("-------Please Provide below details---------");
 		Doctor doctor = new Doctor();
 		System.out.println("Enter Doctor's Name : ");
-		doctor.setDoctorName(sc.nextLine());
+		String doctorName = sc.nextLine();
+		try {
+			if(doctorName.isBlank())
+				throw new NameNotFoundException("no name is provied");
+			else
+				doctor.setDoctorName(doctorName);
+		}catch(NameNotFoundException exception) {
+			exception.printStackTrace();
+		}
+		
 		System.out.println("Enter Doctor's Contact Number : ");
-		doctor.setContactNumber(sc.nextLong());
+		long doctorContact = sc.nextLong();
+		int temp = String.valueOf(doctorContact).length();
+		try {
+			if(temp<10 || temp>10)
+				throw new InsufficientContactException("contact is provided is insufficient");
+			else
+				doctor.setContactNumber(doctorContact);
+		}catch(InsufficientContactException exception) {
+			exception.printStackTrace();
+
+		}
+		
+		
+		sc.nextLine();
 		System.out.println("Enter Number Of Hours Doctor is Available : ");
-		doctor.setHoursOfAvailability(sc.nextInt());
+		int hours = sc.nextInt();
+		try {
+		if (hours < 4)
+			throw new InsufficientHoursOfAvailabilityException("Your Hours of Availability is Insufficient");
+		else
+			doctor.setHoursOfAvailability(hours);
+		}catch(InsufficientHoursOfAvailabilityException  exception) {
+			exception.printStackTrace();
+		}
 		sc.nextLine();
 		System.out.println("Enter Doctor's Specializaion : ");
 		doctor.setSpecialization(sc.nextLine());
 		System.out.println("Enter Doctor's Degree Name : ");
 		doctor.setDegree(sc.nextLine());
 		System.out.println("Enter Doctor's Total Number of Experience : ");
-		doctor.setYearsOfExperience(sc.nextInt());
+		int years = sc.nextInt();
+		try {
+		if (hours < 4)
+			throw new InsufficientExperienceException("Your Years of Experience is Insufficient");
+		else
+			doctor.setYearsOfExperience(years);
+		}catch(InsufficientExperienceException exception) {
+			exception.printStackTrace();
+		}
 		sc.nextLine();
 		System.out.println("Enter Doctor's Fees: ");
-		doctor.setDoctorFee(sc.nextInt());
-
+		float doctorFee=sc.nextFloat();
+		try {
+			if(doctorFee==0) {
+				throw new FeeNotFoundException("Doctor fee is not provided");
+			}
+			else
+				doctor.setDoctorFee(doctorFee);
+		}
+		catch(FeeNotFoundException excepion) {
+			excepion.printStackTrace();
+		}
+		sc.nextLine();
 		DoctorDAOImpl impl = new DoctorDAOImpl();
 		impl.addDoctor(doctor);
 		System.out.println("Doctor Registered Successfully!");
-		sc.close();
 	}
 
 	private static void updateDoctorFee() {
 
-		Scanner sc = new Scanner(System.in);
 		System.out.println("-------Updating details-------- ");
 		System.out.println("Enter Doctor id : ");
 		int doctorId = sc.nextInt();
@@ -53,22 +106,41 @@ public class DoctorDAOImplTest {
 		DoctorDAOImpl doctorDaoImpl = new DoctorDAOImpl();
 		doctorDaoImpl.updateDoctorFee(doctorId, updatedDoctorFee);
 		System.out.println("-------Updated Doctor Fees-------- ");
-		sc.close();
 
 	}
 
 	private static void updateDoctor() {
 
-		Scanner sc = new Scanner(System.in);
 		System.out.println("-------Updating details-------- ");
-		Doctor doctor1 =new Doctor();
+		Doctor doctor1 = new Doctor();
 		System.out.println("Enter Doctor id : ");
 		int doctorId = sc.nextInt();
 		sc.nextLine();
 		System.out.println("Enter Doctor's Name : ");
-		doctor1.setDoctorName(sc.nextLine());
+		String doctorName = sc.nextLine();
+		try {
+			if(doctorName.isBlank())
+				throw new NameNotFoundException("no name is provied");
+			else
+				doctor1.setDoctorName(doctorName);
+		}catch(NameNotFoundException exception) {
+			exception.printStackTrace();
+		}
 		System.out.println("Enter Doctor's Contact Number : ");
-		doctor1.setContactNumber(sc.nextLong());
+		long doctorContact = sc.nextLong();
+		int temp = String.valueOf(doctorContact).length();
+		try {
+			if(temp<10 || temp>10)
+				throw new InsufficientContactException("contact is provided is insufficient");
+			else
+				doctor1.setContactNumber(doctorContact);
+		}catch(InsufficientContactException exception) {
+			exception.printStackTrace();
+
+		}
+		
+		
+		sc.nextLine();
 		System.out.println("Enter Number Of Hours Doctor is Available : ");
 		doctor1.setHoursOfAvailability(sc.nextInt());
 		sc.nextLine();
@@ -80,33 +152,39 @@ public class DoctorDAOImplTest {
 		doctor1.setYearsOfExperience(sc.nextInt());
 		sc.nextLine();
 		System.out.println("Enter Doctor's Fees: ");
-		doctor1.setDoctorFee(sc.nextInt());
-		
+		float doctorFee=sc.nextFloat();
+		try {
+			if(doctorFee==0) {
+				throw new FeeNotFoundException("Doctor fee is not provided");
+			}
+			else
+				doctor1.setDoctorFee(doctorFee);
+		}
+		catch(FeeNotFoundException excepion) {
+			excepion.printStackTrace();
+		}
+
 		DoctorDAOImpl doctorDaoImpl = new DoctorDAOImpl();
-		doctorDaoImpl.updateDoctor(doctor1,doctorId);
+		doctorDaoImpl.updateDoctor(doctor1, doctorId);
 		System.out.println("-------Updated Doctor Details-------- ");
-		sc.close();
 
 	}
-	
+
 	private static void removeDoctor() {
-		Scanner sc = new Scanner(System.in);
+
 		System.out.println("-------Deleting details-------- ");
-		//Doctor doctor =new Doctor();
 		System.out.println("Enter Doctor id : ");
 		int doctorId = sc.nextInt();
-		
+
 		DoctorDAOImpl doctorDaoImpl = new DoctorDAOImpl();
 		doctorDaoImpl.deleteDoctor(doctorId);
 		System.out.println("-------Deleted Doctor Details-------- ");
-		
-		sc.close();
+
 	}
 
-	
+	public static void main(String args[])
+			throws InsufficientHoursOfAvailabilityException, InsufficientExperienceException {
 
-	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Menu");
 		System.out.println("1. Test AddDoctor method");
 		System.out.println("2. Test UpdateDoctorFee method");
@@ -115,30 +193,29 @@ public class DoctorDAOImplTest {
 		System.out.println("5. Test RemoveDoctor method");
 		System.out.println("Choice");
 		int choice = sc.nextInt();
-		switch(choice) {
-		case 1 :
+		sc.nextLine();
+		switch (choice) {
+		case 1:
 			registerDocor();
 			break;
 		case 2:
 			updateDoctorFee();
 			break;
-		case 3 :
+		case 3:
 			DoctorDAOImpl doctorDaoImpl = new DoctorDAOImpl();
 			doctorDaoImpl.listAllDoctors();
 			break;
-		case 4 :
+		case 4:
 			updateDoctor();
 			break;
 		case 5:
 			removeDoctor();
 		default:
 			break;
-			
-		}
-		
-		
-		
-		sc.close();
 
-}
+		}
+
+		sc.close();
+	}
+
 }

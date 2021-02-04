@@ -9,8 +9,6 @@ package com.cg.hsm.domain;
 import javax.persistence.Embeddable;
 
 @Embeddable
-
-
 public class PatientCase {
 	/**
 	 * DoctorName how to assigned to that patient
@@ -21,9 +19,9 @@ public class PatientCase {
 	 */
 	private String medicines;
 	/**
-	 * medicine cost
+	 * cost of medicines
 	 */
-	private long medicineCost;
+	private float medicineFee;
 	
 	/**
 	 * Reports of patients
@@ -33,78 +31,87 @@ public class PatientCase {
 	 * current treatment given to patient
 	 */
 	private String currentTreatment;
+	@Override
+	public String toString() {
+		return "PatientCase [associatedDoctorName=" + associatedDoctorName + ", medicines=" + medicines + ", reports="
+				+ reports + ", currentTreatment=" + currentTreatment + ", diseaseDescription=" + diseaseDescription
+				+ "]";
+	}
 	/**
 	 * Detail description of disease
 	 */
-	
 	private String diseaseDescription;
 	
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "PatientCase [associatedDoctorName=" + associatedDoctorName + ", medicines=" + medicines
-				+ ", medicineCost=" + medicineCost + ", reports=" + reports + ", currentTreatment=" + currentTreatment
-				+ ", diseaseDescription=" + diseaseDescription + "]";
-	}
 	//getters and setters
+	public String getMedicines() {
+		return  medicines;
+		
+		}
+				
+		
+	public void setMedicines(String medicines) {
+		this.medicines = medicines;
+	}
+	
+	public String getDiseaseDescription() {
+		return diseaseDescription;
+	}
+	public void setDiseaseDescription(String diseaseDescription) {
+		this.diseaseDescription = diseaseDescription;
+	}
+	public String getReports() {
+		return reports;
+	}
+	public void setReports(String reports) {
+		this.reports = reports;
+	}
+	public String getCurrentTreatment() {
+		return currentTreatment;
+	}
+	public void setCurrentTreatment(String currentTreatment) {
+		this.currentTreatment = currentTreatment;
+	}
+	
+	
+	
+	public String getAssociatedDoctorName() {
+		return associatedDoctorName;
+	}
+
+
+	public void setAssociatedDoctorName(String associatedDoctorName) {
+		this.associatedDoctorName = associatedDoctorName;
+	}
+
+
+	public float getMedicineFee() {
+		return medicineFee;
+	}
+
+
+	public void setMedicineFee(float medicineFee) {
+		this.medicineFee = medicineFee;
+	}
+
+
+		//Parameterized Constructor
+		
+		public PatientCase(String associatedDoctorName, String medicines, float medicineFee, String reports,
+			String currentTreatment, String diseaseDescription) {
+		super();
+		this.associatedDoctorName = associatedDoctorName;
+		this.medicines = medicines;
+		this.medicineFee = medicineFee;
+		this.reports = reports;
+		this.currentTreatment = currentTreatment;
+		this.diseaseDescription = diseaseDescription;
+	}
+
 		//Default Constructor
 				public PatientCase() {
 					super();
 					
 				}
-				public String getAssociatedDoctorName() {
-					return associatedDoctorName;
-				}
-				public void setAssociatedDoctorName(String associatedDoctorName) {
-					this.associatedDoctorName = associatedDoctorName;
-				}
-				public String getMedicines() {
-					return medicines;
-				}
-				public void setMedicines(String medicines) {
-					this.medicines = medicines;
-				}
-				public long getMedicineCost() {
-					return medicineCost;
-				}
-				public void setMedicineCost(long medicineCost) {
-					this.medicineCost = medicineCost;
-				}
-				public String getReports() {
-					return reports;
-				}
-				public void setReports(String reports) {
-					this.reports = reports;
-				}
-				public String getCurrentTreatment() {
-					return currentTreatment;
-				}
-				public void setCurrentTreatment(String currentTreatment) {
-					this.currentTreatment = currentTreatment;
-				}
-				public String getDiseaseDescription() {
-					return diseaseDescription;
-				}
-				public void setDiseaseDescription(String diseaseDescription) {
-					this.diseaseDescription = diseaseDescription;
-				}
-	//Parameterized Constructor
-	public PatientCase(String associatedDoctorName, String medicines, long medicineCost, String reports,
-			String currentTreatment, String diseaseDescription) {
-		super();
-		this.associatedDoctorName = associatedDoctorName;
-		this.medicines = medicines;
-		this.medicineCost = medicineCost;
-		this.reports = reports;
-		this.currentTreatment = currentTreatment;
-		this.diseaseDescription = diseaseDescription;
-	}
-	
-
 				
 				
 				

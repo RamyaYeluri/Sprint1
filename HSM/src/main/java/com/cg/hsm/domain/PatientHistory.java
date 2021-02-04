@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 /**
@@ -36,16 +35,13 @@ public class PatientHistory {
 	
 		private String diseaseName;
 		/**
-		 * blood group.
+		 * Foreign key from Patient class patientId .
 		 */
 		private int patientId;
-		public int getPatientId() {
-			return patientId;
-		}
-		public void setPatientId(int patientId) {
-			this.patientId = patientId;
-		}
-
+		
+      /**
+       * Blood group
+       */
 		private String bloodGroup;
 		/**
 		 * Diet advised for patient
@@ -61,6 +57,8 @@ public class PatientHistory {
 		private String histoyReports;
 		
 		//Getters and Setters
+		
+		
 		public void setPatient(Patient patient)	{
 			this.patient=patient;
 		}
@@ -76,6 +74,12 @@ public class PatientHistory {
 			this.patientHistoryId = patientHistoryId;
 		}
 
+		public int getPatientId() {
+			return patientId;
+		}
+		public void setPatientId(int patientId) {
+			this.patientId = patientId;
+		}
 		public void setDiseaseName(String diseaseName) {
 			this.diseaseName = diseaseName;
 		}
@@ -129,7 +133,7 @@ public class PatientHistory {
 					+ ", diseaseName=" + diseaseName + ", bloodGroup=" + bloodGroup + ", dietAdvised=" + dietAdvised
 					+ ", treatmentStatus=" + treatmentStatus + ", histoyReports=" + histoyReports + "]";
 		}
-
+   //ToString method
 		public PatientHistory( int patientHistoryId, String diseaseName, String bloodGroup,
 				String dietAdvised, String treatmentStatus, String histoyReports) {
 			super();

@@ -1,3 +1,4 @@
+
 package com.cg.hsm.daoimpl;
 
 import java.util.List;
@@ -5,11 +6,15 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.cg.hsm.dao.PatientDAO;
+import com.cg.hsm.domain.InsurancePolicy;
 import com.cg.hsm.domain.Patient;
-import com.cg.hsm.domain.PatientCase;
-
+import com.cg.hsm.domain.PatientHistory;
 import com.cg.hsm.util.DBUtil;
-
+/**
+ * This PatientDAOImpl implements CRUD operations of PatientDAO class
+ * @author jyothi
+ *
+ */
 public class PatientDAOImpl extends DBUtil implements PatientDAO {
 	/**
 	 * This addPatient method will add patient details in patients table in database
@@ -19,10 +24,12 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 		// TODO Auto-generated method stub
 		entityManager.getTransaction().begin();
 		entityManager.persist(patient);
-		entityManager.persist(patient.getPatientHistory());
+	//entityManager.persist(patient.getPatientHistory());
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		  
+		
+
 		
 	}
 	/**
@@ -39,7 +46,6 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 		patient.setAddress(patient1.getAddress());
 		patient.setAdmissionFee(patient1.getAdmissionFee());
 		patient.setPatientCase(patient1.getPatientCase());
-		
 		 entityManager.getTransaction().commit();
 		 entityManager.close();
 		  
@@ -65,6 +71,7 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 	public List<Patient> getAllPatientDetails() {
 		
 		Query query =entityManager.createQuery("from Patient");	
+		@SuppressWarnings("unchecked")
 		List<Patient> patients =  query.getResultList();
 		for(Patient patient:patients) {
 			System.out.println("Patient ID : " + patient.getPatientId());
@@ -75,25 +82,30 @@ public class PatientDAOImpl extends DBUtil implements PatientDAO {
 			System.out.println("Symptoms : "+patient.getSymptoms());
 			System.out.println("Admission Fee : "+ patient.getAdmissionFee());
 			System.out.println("Patient Case : " + patient.getPatientCase());
-			
 		}
-		return null;
+		return patients;
 	}
-		
-public void updatePatientCase( PatientCase patientcase, int patientId) {
-		
-		entityManager.getTransaction().begin();	
-		Patient patient=entityManager.find(Patient.class, patientId);
-		patientcase.setMedicines(patientcase.getMedicines());
-		patientcase.setDiseaseDescription(patientcase.getDiseaseDescription());
-		patientcase.setAssociatedDoctorName(patientcase.getAssociatedDoctorName());
-		patientcase.setReports(patientcase.getReports());
-		patientcase.setCurrentTreatment(patientcase.getCurrentTreatment());
-		patientcase.setMedicineCost(patientcase.getMedicineCost());
-		patient.setPatientCase(patientcase);
-		 entityManager.getTransaction().commit();
-		 entityManager.close();
 	
-}
+	@Override
+	public void updateInsurancePolicy(InsurancePolicy insurancePolicy1, String policyId) {
+
+		entityManager.getTransaction().begin();
+		InsurancePolicy insurancePolicy = entityManager.find(InsurancePolicy.class, policyId);
+		insurancePolicy.setPolicyName(insurancePolicy1.getPolicyName());
+		entityManager.getTransaction().commit();
+		entityManager.close();
+	}
+	
+	@Override
+	public void deleteInsurancePolicy(String policyId) {
+
+		entityManager.getTransaction().begin();
+		InsurancePolicy insurancePolicy = entityManager.find(InsurancePolicy.class, policyId);
+		entityManager.remove(insurancePolicy);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+
+	}
+	
 
 }

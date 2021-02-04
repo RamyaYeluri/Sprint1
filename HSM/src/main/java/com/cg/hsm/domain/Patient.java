@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
 /**
  * This class will create patient table in database and get all doctor details
  * @author Jyothi
@@ -28,23 +26,11 @@ public class Patient {
 	 * id of the patient
 	 */
 	private int patientId;
-	
-	 
-   // @OneToMany(mappedBy="patient")
-    @OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="patientId")
     Set<PatientHistory> patientHistory;
- 
-	
-		@Embedded
-	PatientCase patientCase;
-	
-
-			//getters and setters
-			
-			
 	/**
-	 * id of the patient
+	 * name of the patient
 	 */
 	private String patientName;	
 	/**
@@ -66,9 +52,19 @@ public class Patient {
 	/**
 	 * fee for the patient admission fee
 	 */
-	private int admissionFee;
+	private float admissionFee;
+	@Embedded
+	/**
+	 * patient's current case details
+	 */
+	private PatientCase patientCase;
+	@Embedded
+	/**
+	 * patient's insurance policy details
+	 */
+	private InsurancePolicy insurancePolicy;
 	
-	
+	//getters and setters
 	public int getPatientId() {
 		return patientId;
 	}
@@ -105,15 +101,28 @@ public class Patient {
 	public void setSymptoms(String symptoms) {
 		this.symptoms = symptoms;
 	}
-	public int getAdmissionFee() {
+	public float getAdmissionFee() {
 		return admissionFee;
 	}
-	public void setAdmissionFee(int admissionFee) {
-		this.admissionFee = admissionFee;
+	public void setAdmissionFee(float admissionFee2) {
+		this.admissionFee = admissionFee2;
 	}
 	
 
-	
+	public void setPatientHistory(Set<PatientHistory> patientHistory) {
+		if(null == patientHistory) {
+			patientHistory = new HashSet<PatientHistory>();
+		}
+		this.patientHistory = patientHistory;
+	}
+		
+		public Set<PatientHistory> getPatientHistory() {
+			// TODO Auto-generated method stub
+			if(null == patientHistory) {
+				patientHistory = new HashSet<PatientHistory>();
+			}
+			return patientHistory;
+		}
 	
 
 	public PatientCase getPatientCase() {
@@ -123,46 +132,44 @@ public class Patient {
 		this.patientCase = patientCase;
 	}
 
-	
-	
-	
-	
-	
-	public void setPatientHistory(Set<PatientHistory> patientHistory) {
-		if(null == patientHistory) {
-			patientHistory = new HashSet<PatientHistory>();
-		}
-		this.patientHistory = patientHistory;
+	public InsurancePolicy getInsurancePolicy() {
+		return insurancePolicy;
 	}
-		//Default Constructor
+
+	public void setInsurancePolicy(InsurancePolicy insurancePolicy) {
+		this.insurancePolicy = insurancePolicy;
+	}
+	
+	//Parameterized Constructor
+	
+		
+	public Patient(int patientId, Set<PatientHistory> patientHistory, PatientCase patientCase,
+			InsurancePolicy insurancePolicy, String patientName, int patientAge, long patientContact, String address,
+			String symptoms, int admissionFee) {
+		super();
+		this.patientId = patientId;
+		this.patientHistory = patientHistory;
+		this.patientCase = patientCase;
+		this.insurancePolicy = insurancePolicy;
+		this.patientName = patientName;
+		this.patientAge = patientAge;
+		this.patientContact = patientContact;
+		this.address = address;
+		this.symptoms = symptoms;
+		this.admissionFee = admissionFee;
+	}	
+	//Default Constructor
 		public Patient() {
 			super();
 			
 		}
 		
-		
-		//Parameterized Constructor
-		public Patient(int patientId, Set<PatientHistory> patientHistory, PatientCase patientCase, String patientName,
-				int patientAge, long patientContact, String address, String symptoms, int admissionFee) {
-			super();
-			this.patientId = patientId;
-			this.patientHistory = patientHistory;
-			this.patientCase = patientCase;
-			this.patientName = patientName;
-			this.patientAge = patientAge;
-			this.patientContact = patientContact;
-			this.address = address;
-			this.symptoms = symptoms;
-			this.admissionFee = admissionFee;
+		@Override
+		public String toString() {
+			return "Patient [patientId=" + patientId + ", patientName=" + patientName + ", patientAge=" + patientAge
+					+ ", patientContact=" + patientContact + ", address=" + address + ", symptoms=" + symptoms
+					+ ", admissionFee=" + admissionFee + "]";
 		}
-		public Set<PatientHistory> getPatientHistory() {
-			// TODO Auto-generated method stub
-			if(null == patientHistory) {
-				patientHistory = new HashSet<PatientHistory>();
-			}
-			return patientHistory;
-		}
-		
 			
 		
 	

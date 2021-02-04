@@ -1,6 +1,6 @@
 package com.cg.hsm.service;
 /**
- * This class provides services to Doctor
+ * This Doctorservice interface provides services to Doctor
  * @author Pranjali Chaudhari
  *
  */

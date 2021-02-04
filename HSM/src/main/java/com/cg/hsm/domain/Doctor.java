@@ -47,7 +47,7 @@ public class Doctor {
 	/**
 	 * Fees of the doctor.
 	 */
-	private int doctorFee;
+	private float doctorFee;
 	
 	//Getters and Setters
 	public int getDoctorId() {
@@ -92,16 +92,16 @@ public class Doctor {
 	public void setYearsOfExperience(int yearsOfExperience) {
 		this.yearsOfExperience = yearsOfExperience;
 	}
-	public int getDoctorFee() {
+	public float getDoctorFee() {
 		return doctorFee;
 	}
-	public void setDoctorFee(int fees) {
+	public void setDoctorFee(float fees) {
 		this.doctorFee = fees;
 	}
 	
 	//Parameterized Constructor
 	public Doctor(int doctorId, String doctorName, long contactNumber, int hoursOfAvailability, String specialization,
-			String degree, int yearsOfExperience, int doctorFee) {
+			String degree, int yearsOfExperience, float doctorFee) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;

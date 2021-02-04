@@ -2,10 +2,11 @@ package com.cg.hsm.dao;
 
 import java.util.List;
 
-
+import com.cg.hsm.domain.InsurancePolicy;
 import com.cg.hsm.domain.Patient;
+import com.cg.hsm.domain.PatientHistory;
 /**
- * This class perform CRUD operations on database
+ * This PatientDAO class perform CRUD operations on patient class
  * @author  Jyothi
  *
  */
@@ -28,9 +29,19 @@ public interface PatientDAO {
 	 */
 	public void deletePatient(int patientId);
 	/**
-	 * This will return the list of all the doctors from database
+	 * This will return the list of all the patients from database
 	 * @return
 	 */
 	List<Patient> getAllPatientDetails();
+	/**
+	 * This updateInsurance will update details about patient's insurance policy
+	 * @param insurancePolicy1
+	 * @param policyId
+	 */
+	public void updateInsurancePolicy(InsurancePolicy insurancePolicy1, String policyId);
+	/**
+	 * This deleteInsurancePolicy will delete details about patient's insurance policy
+	 * @param policyId
+	 */
+	public void deleteInsurancePolicy(String policyId);
 }
-	

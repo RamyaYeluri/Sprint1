@@ -10,7 +10,11 @@ import java.util.List;
 
 import com.cg.hsm.domain.PatientHistory;
 
-
+/**
+* This PatientHistoryDAOImpl define CRUD operations 
+* @author Y.K.Sai Ramya
+*
+*/
 
 public interface PatientHistoryDAO {
 	/**
@@ -20,9 +24,14 @@ public interface PatientHistoryDAO {
 	public void addPatientHistory(PatientHistory patientHistory);
 		 	/**
 	 * This will return the list of all the patient's history details from database
-	 * @return Doctors
+	 * @return Patient's History
 	 */
 	List<PatientHistory> listAllPatientHistories();
+	/**
+	 * This method will return list of patient history details based on patientid
+	 * @param patientId
+	 */
+	void viewPatientHistory(int patientId);
 	
 
 }

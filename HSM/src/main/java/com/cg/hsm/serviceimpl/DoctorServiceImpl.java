@@ -1,16 +1,10 @@
 package com.cg.hsm.serviceimpl;
-
-import java.util.List;
-
-import javax.persistence.Query;
-
-import com.cg.hsm.domain.Doctor;
 import com.cg.hsm.domain.Patient;
 import com.cg.hsm.service.DoctorService;
 import com.cg.hsm.util.DBUtil;
 /**
- * This class provides services to doctor
- * @author Pranjali Chaudhari
+ * This DoctorServiceImpl class implements services of DoctorService 
+ *  * @author Pranjali Chaudhari
  *
  */
 
